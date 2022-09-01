@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Todo List</title>
 </head>
 <body>
+<h1>Todo List</h1>
 
+<div class="container">
+    <div class="input-ctr">
+        <input type="text" name="todo-input" id="todo-input" placeholder="Title">
+        <button type="submit">Add</button>
+    </div>
+</div>
+
+<template id="todo-template">
+    <div class="todo">
+        <h3></h3>
+        <button title="Delete">X</button>
+    </div>
+</template>
 </body>
 </html>

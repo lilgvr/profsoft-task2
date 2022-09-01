@@ -20,13 +20,13 @@ module.exports = {
         compress: true,
         static: {
             directory: path.join(__dirname, 'build')
-        }
+        },
     },
     module: {
         rules: [
             {
-                test: /\.html$/i,
-                loader: 'raw-loader'
+                test: /\.(html|css)$/i,
+                use: ['raw-loader']
             },
             {
                 test: /\.s[ac]ss$/i,
