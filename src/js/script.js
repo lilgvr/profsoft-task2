@@ -5,7 +5,7 @@ const dQ = (el, value) => {
 let todos = JSON.parse(localStorage.getItem('todos'));
 if (!todos) todos = [];
 
-const ctr = dQ(document, '.container');
+const ctr = dQ(document, '#todos-container');
 
 const fillTemplate = (todo) => {
     const template = dQ(document, '#todo-template');
@@ -13,14 +13,14 @@ const fillTemplate = (todo) => {
     const title = dQ(clone, 'h3');
     const removeBtn = dQ(clone, 'button');
 
+    title.innerText = todo.title;
+    ctr.appendChild(clone);
+
     const handleRemoveClick = (e) => {
         e.preventDefault();
     }
 
     removeBtn.addEventListener('click', handleRemoveClick);
-
-    title.innerText = todo.title;
-    ctr.appendChild(clone);
 }
 
 const render = () => {
