@@ -2,6 +2,12 @@ const dQ = (el, value) => {
     return el.querySelector(value);
 }
 
+function* idGenerator(startValue) {
+    let i = startValue || 0;
+
+    while (1) yield i++;
+}
+
 let todos = JSON.parse(localStorage.getItem('todos'));
 if (!todos) todos = [];
 
@@ -18,12 +24,17 @@ const fillTemplate = (todo) => {
 
     const handleRemoveClick = (e) => {
         e.preventDefault();
+
+        todos = todos.filter(t => t.id !== todo.id);
+        localStorage.setItem('todos', JSON.stringify(todos));
+        render();
     }
 
     removeBtn.addEventListener('click', handleRemoveClick);
 }
 
 const render = () => {
+    ctr.innerHTML = '';
     for (const todo of todos) {
         fillTemplate(todo);
     }
@@ -37,6 +48,7 @@ const handleSubmitClick = (e) => {
     if (!value) return;
 
     const newItem = {
+        id: idGenerator(todos.length).next().value,
         title: value
     };
 

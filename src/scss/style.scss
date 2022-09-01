@@ -94,13 +94,16 @@ body {
 
 .todo {
 	display: flex;
-	height: 100px;
+	align-items: center;
+	min-height: $todo-height;
+	height: auto;
 	border-bottom: 1px solid #4f4f4f;
+	padding: 20px 0;
 
 	h3 {
 		font-size: 16pt;
 		width: $width * .75;
-		margin: auto;
+		margin: 0 auto;
 	}
 
 	&:last-of-type {
