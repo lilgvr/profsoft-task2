@@ -1,34 +1,26 @@
 import {dQ, idGenerator} from "./service";
 
-let todos = JSON.parse(localStorage.getItem('todos'));
-if (!todos) todos = [];
+let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 const ctr = dQ(document, '#todos-container');
-const len = todos.length;
 
 const render = () => {
-    const emptyPlaceholder = document.createElement('h2');
-    emptyPlaceholder.innerText = "List's empty";
+    const appendEmptyPlaceholder = () => {
+        const emptyPlaceholder = document.createElement('h2');
+        emptyPlaceholder.innerText = "List is empty";
 
-
-    // TODO placeholder
-    if (todos.length === 0) {
+        ctr.innerHTML = '';
         ctr.appendChild(emptyPlaceholder);
         ctr.style.display = 'flex';
-        return;
-    } else {
-        ctr.style.display = 'block';
-        ctr.innerHTML = '';
     }
 
-    if (todos.length > len) {
-        for (let i = todos.length - len; i < todos.length; i++) {
-            fillTemplate(todos[i]);
-        }
+    if (todos.length === 0) {
+        appendEmptyPlaceholder();
         return;
     }
 
-    if (todos.length < len) ctr.innerHTML = '';
+    ctr.style.display = 'block';
+    ctr.innerHTML = '';
 
     for (const todo of todos) {
         fillTemplate(todo);
