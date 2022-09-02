@@ -1,10 +1,13 @@
-import {dQ, idGenerator} from "./service";
+export const dQ = (el, value) => {
+    return el.querySelector(value);
+}
 
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 const ctr = dQ(document, '#todos-container');
 
 const render = () => {
+    console.log(todos)
     const appendEmptyPlaceholder = () => {
         const emptyPlaceholder = document.createElement('h2');
         emptyPlaceholder.innerText = "List is empty";
@@ -58,7 +61,7 @@ const main = () => {
         if (!value) return;
 
         const newItem = {
-            id: idGenerator(todos.length).next().value,
+            id: todos.length,
             title: value
         };
 
