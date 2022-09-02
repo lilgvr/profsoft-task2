@@ -47,26 +47,27 @@ const fillTemplate = (todo) => {
     removeBtn.addEventListener('click', handleRemoveClick);
 }
 
-const handleSubmitClick = (e) => {
-    const input = dQ(document, '#todo-input');
-    e.preventDefault();
-    const value = input.value;
-
-    if (!value) return;
-
-    const newItem = {
-        id: idGenerator(todos.length).next().value,
-        title: value
-    };
-
-    todos.push(newItem);
-    render();
-    localStorage.setItem('todos', JSON.stringify(todos));
-    input.value = '';
-}
-
 const main = () => {
     const addBtn = dQ(document, '.input-ctr').querySelector('button');
+
+    const handleSubmitClick = (e) => {
+        const input = dQ(document, '#todo-input');
+        e.preventDefault();
+        const value = input.value;
+
+        if (!value) return;
+
+        const newItem = {
+            id: idGenerator(todos.length).next().value,
+            title: value
+        };
+
+        todos.push(newItem);
+        render();
+        localStorage.setItem('todos', JSON.stringify(todos));
+        input.value = '';
+    }
+
     render();
 
     addBtn.addEventListener('click', handleSubmitClick);
