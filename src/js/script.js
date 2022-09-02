@@ -7,7 +7,6 @@ let todos = JSON.parse(localStorage.getItem('todos')) || [];
 const ctr = dQ(document, '#todos-container');
 
 const render = () => {
-    console.log(todos)
     const appendEmptyPlaceholder = () => {
         const emptyPlaceholder = document.createElement('h2');
         emptyPlaceholder.innerText = "List is empty";
