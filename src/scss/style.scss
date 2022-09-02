@@ -28,15 +28,12 @@ html, body {
 body {
 	margin: 0;
 	background-color: $bg-color;
-	/*display: flex;
-	flex-direction: column;*/
-	padding-top: 100px;
+	display: flex;
+	flex-direction: column;
 
 	h1 {
-		width: fit-content;
 		font-size: 36pt;
 		user-select: none;
-		margin: auto;
 	}
 
 	h2{
