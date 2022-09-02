@@ -12,6 +12,10 @@ $bg-color: #111111;
 	border-color: #ffffff;
 	border-style: solid;
 	color: #ffffff;
+
+	&:hover{
+		cursor: pointer;
+	}
 }
 
 html, body {
@@ -24,13 +28,15 @@ html, body {
 body {
 	margin: 0;
 	background-color: $bg-color;
-	display: flex;
-	flex-direction: column;
+	/*display: flex;
+	flex-direction: column;*/
+	padding-top: 100px;
 
 	h1 {
+		width: fit-content;
 		font-size: 36pt;
 		user-select: none;
-		margin: 100px auto 0 auto;
+		margin: auto;
 	}
 
 	h2{
@@ -39,7 +45,7 @@ body {
 }
 
 .container {
-	margin: auto;
+	margin: 100px auto auto auto;
 	width: $width;
 	height: 3*($todo-height + 2*$todo-padding)+ $input-height + 4px;
 
@@ -91,7 +97,6 @@ body {
 		margin-right: 15px;
 
 		&:hover {
-			cursor: pointer;
 			background-color: #195e16;
 		}
 	}
@@ -121,7 +126,6 @@ body {
 
 		&:hover {
 			background-color: #9f1b04;
-			cursor: pointer;
 		}
 	}
 }
