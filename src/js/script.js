@@ -1,17 +1,39 @@
-const dQ = (el, value) => {
-    return el.querySelector(value);
-}
-
-function* idGenerator(startValue) {
-    let i = startValue || 0;
-
-    while (1) yield i++;
-}
+import {dQ, idGenerator} from "./service";
 
 let todos = JSON.parse(localStorage.getItem('todos'));
 if (!todos) todos = [];
 
 const ctr = dQ(document, '#todos-container');
+const len = todos.length;
+
+const render = () => {
+    const emptyPlaceholder = document.createElement('h2');
+    emptyPlaceholder.innerText = "List's empty";
+
+
+    // TODO placeholder
+    if (todos.length === 0) {
+        ctr.appendChild(emptyPlaceholder);
+        ctr.style.display = 'flex';
+        return;
+    } else {
+        ctr.style.display = 'block';
+        ctr.innerHTML = '';
+    }
+
+    if (todos.length > len) {
+        for (let i = todos.length - len; i < todos.length; i++) {
+            fillTemplate(todos[i]);
+        }
+        return;
+    }
+
+    if (todos.length < len) ctr.innerHTML = '';
+
+    for (const todo of todos) {
+        fillTemplate(todo);
+    }
+}
 
 const fillTemplate = (todo) => {
     const template = dQ(document, '#todo-template');
@@ -33,13 +55,6 @@ const fillTemplate = (todo) => {
     removeBtn.addEventListener('click', handleRemoveClick);
 }
 
-const render = () => {
-    ctr.innerHTML = '';
-    for (const todo of todos) {
-        fillTemplate(todo);
-    }
-}
-
 const handleSubmitClick = (e) => {
     const input = dQ(document, '#todo-input');
     e.preventDefault();
@@ -53,7 +68,7 @@ const handleSubmitClick = (e) => {
     };
 
     todos.push(newItem);
-    fillTemplate(newItem);
+    render();
     localStorage.setItem('todos', JSON.stringify(todos));
     input.value = '';
 }
