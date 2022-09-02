@@ -63,8 +63,8 @@ const main = () => {
         };
 
         todos.push(newItem);
-        render();
         localStorage.setItem('todos', JSON.stringify(todos));
+        render();
         input.value = '';
     }
 
