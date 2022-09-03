@@ -53,8 +53,8 @@ const main = () => {
     const addBtn = dQ(document, '.input-ctr').querySelector('button');
 
     const handleSubmitClick = (e) => {
-        const input = dQ(document, '#todo-input');
         e.preventDefault();
+        const input = dQ(document, '#todo-input');
         const value = input.value;
 
         if (!value) return;
