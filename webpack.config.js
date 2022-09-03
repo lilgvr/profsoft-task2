@@ -19,7 +19,7 @@ module.exports = {
         hot: true,
         compress: true,
         static: {
-            directory: path.join(__dirname, 'build')
+            directory: path.join(__dirname, 'src')
         },
     },
     module: {
