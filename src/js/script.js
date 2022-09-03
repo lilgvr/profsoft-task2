@@ -5,6 +5,7 @@ export const dQ = (el, value) => {
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 const ctr = dQ(document, '#todos-container');
+const template = dQ(document, '#todo-template');
 
 const render = () => {
     const appendEmptyPlaceholder = () => {
@@ -12,8 +13,8 @@ const render = () => {
         emptyPlaceholder.innerText = "List is empty";
 
         ctr.innerHTML = '';
-        ctr.appendChild(emptyPlaceholder);
         ctr.style.display = 'flex';
+        ctr.appendChild(emptyPlaceholder);
     }
 
     if (todos.length === 0) {
@@ -30,7 +31,6 @@ const render = () => {
 }
 
 const fillTemplate = (todo) => {
-    const template = dQ(document, '#todo-template');
     const clone = template.content.cloneNode(true);
     const title = dQ(clone, 'h3');
     const removeBtn = dQ(clone, 'button');
