@@ -1,20 +1,20 @@
-export const dQ = (el, value) => {
+const getElement = (el, value) => {
     return el.querySelector(value);
 }
 
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-const ctr = dQ(document, '#todos-container');
-const template = dQ(document, '#todo-template');
+const container = getElement(document, '#todos-container');
+const template = getElement(document, '#todo-template');
 
 const render = () => {
     const appendEmptyPlaceholder = () => {
         const emptyPlaceholder = document.createElement('h2');
         emptyPlaceholder.innerText = "List is empty";
 
-        ctr.innerHTML = '';
-        ctr.style.display = 'flex';
-        ctr.appendChild(emptyPlaceholder);
+        container.innerHTML = '';
+        container.style.display = 'flex';
+        container.appendChild(emptyPlaceholder);
     }
 
     if (todos.length === 0) {
@@ -22,8 +22,8 @@ const render = () => {
         return;
     }
 
-    ctr.style.display = 'block';
-    ctr.innerHTML = '';
+    container.style.display = 'block';
+    container.innerHTML = '';
 
     for (const todo of todos) {
         fillTemplate(todo);
@@ -32,11 +32,11 @@ const render = () => {
 
 const fillTemplate = (todo) => {
     const clone = template.content.cloneNode(true);
-    const title = dQ(clone, 'h3');
-    const removeBtn = dQ(clone, 'button');
+    const title = getElement(clone, 'h3');
+    const removeBtn = getElement(clone, 'button');
 
     title.innerText = todo.title;
-    ctr.appendChild(clone);
+    container.appendChild(clone);
 
     const handleRemoveClick = (e) => {
         e.preventDefault();
@@ -50,11 +50,11 @@ const fillTemplate = (todo) => {
 }
 
 const main = () => {
-    const addBtn = dQ(document, '.input-ctr').querySelector('button');
+    const addBtn = getElement(document, '.input-ctr').querySelector('button');
 
     const handleSubmitClick = (e) => {
         e.preventDefault();
-        const input = dQ(document, '#todo-input');
+        const input = getElement(document, '#todo-input');
         const value = input.value;
 
         if (!value) return;

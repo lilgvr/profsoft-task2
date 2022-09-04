@@ -1,80 +1,97 @@
 $width: 600px;
 $tr-time: .1s;
-$input-height: 75px;
-$todo-height: 100px;
-$todo-padding: 20px;
 $bg-color: #111111;
 
 @mixin button {
 	transition: background-color $tr-time linear;
-	border-radius: 0;
 	background-color: $bg-color;
+
 	border-color: #ffffff;
 	border-style: solid;
-	color: #ffffff;
+	border-radius: 0;
 
-	&:hover{
+	color: #ffffff;
+	padding: 5px 10px;
+
+	&:hover {
 		cursor: pointer;
 	}
 }
 
+* {
+	box-sizing: border-box;
+}
+
 html, body {
-	width: 100%;
-	height: 100%;
-	color: #ffffff;
 	font-family: -apple-system, sans-serif;
+	color: #ffffff;
+
+	height: 100%;
+	width: 100%;
 }
 
 body {
-	margin: 0;
 	background-color: $bg-color;
+
 	display: flex;
 	flex-direction: column;
 
+	margin: 0;
+
 	h1 {
-		font-size: 36pt;
-		user-select: none;
 		margin: 100px auto 0 auto;
+		user-select: none;
+		font-size: 36pt;
 	}
 
-	h2{
+	h2 {
 		margin: auto;
 	}
 }
 
 .container {
 	margin: 100px auto auto auto;
+
 	width: $width;
-	height: 3*($todo-height + 2*$todo-padding)+ $input-height + 4px;
+	height: 500px;
 
 	border: 2px solid #fff;
 	border-radius: 5px;
+
+	display: flex;
+	flex-direction: column;
 }
 
 #todos-container {
-	width: $width;
-	height: 3*($todo-height + 2*$todo-padding) + 2px;
-	overflow-y: auto;
-	overflow-x: hidden;
+	flex-grow: 1;
+
 	scroll-behavior: smooth;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .input-ctr {
 	border-bottom: 2px solid #ffffff;
-	width: $width;
-	height: $input-height;
+
+	width: 100%;
+	padding: 20px;
+
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
+	justify-content: space-between;
 
 	input {
-		width: $width * .75;
+		max-width: $width * .75;
+		padding: 5px 0 5px 5px;
+		width: 100%;
+
 		background-color: $bg-color;
+
 		border-color: #ffffff;
 		border-style: solid;
-		color: #ffffff;
+
 		font-size: 16pt;
-		padding: 5px 0 5px 5px;
+		color: #ffffff;
 
 		&::placeholder {
 			transition: color $tr-time linear;
@@ -91,8 +108,8 @@ body {
 
 	button {
 		@include button;
+
 		font-size: 16pt;
-		margin-right: 15px;
 
 		&:hover {
 			background-color: #195e16;
@@ -103,15 +120,14 @@ body {
 .todo {
 	display: flex;
 	align-items: center;
-	min-height: $todo-height;
-	height: auto;
+	justify-content: space-between;
+
 	border-bottom: 1px solid #4f4f4f;
-	padding: $todo-padding 0;
+	padding: 20px 30px;
 
 	h3 {
+		padding-right: 40px;
 		font-size: 16pt;
-		width: $width * .75;
-		margin: 0 auto;
 	}
 
 	&:last-of-type {
@@ -120,7 +136,8 @@ body {
 
 	button {
 		@include button;
-		margin: auto;
+
+		font-size: 14pt;
 
 		&:hover {
 			background-color: #9f1b04;
